@@ -566,26 +566,6 @@ add('followlive','obs','♥','Live Follower Tracker','Live Twitch follower count
   const u=location.href.split('#')[0]+'#/live/'+c+'/overlay';$('#ob').style.display='block';$('#ou').textContent=u;$('#oo').href=u;$('#co').onclick=e=>copy(u,e.target)};
  $('#go').onclick=go;$('#c').addEventListener('keydown',e=>{if(e.key==='Enter')go()});const last=LS.g('live.last','');if(last){$('#c').value=last;go()}});
 
-add('cs2','obs','◎','CS2 Stats Bar','Premier rating, W-L and K/D for your stream. Update by hand, export for OBS.',el=>{
- const D={rating:15000,w:0,l:0,k:0,d:0};let s={...D,...LS.g('cs2.s',{})};
- const kd=s=>s.d>0?(s.k/s.d).toFixed(2):s.k>0?s.k.toFixed(2):'0.00';
- const tier=r=>r>=30000?'#ffd700':r>=25000?'#eb4b4b':r>=20000?'#d32ce6':r>=15000?'#8847ff':r>=10000?'#4b69ff':r>=5000?'#5e98d9':'#b0c3d9';
- const fmt=r=>String(r).replace(/\B(?=(\d{3})+(?!\d))/g,',');
- const cell=(l,v,c)=>`<div style="padding:12px 22px;border-right:1px solid #ffffff22;text-align:center"><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9a9aa0;font-weight:700">${l}</div><div style="font-size:28px;font-weight:800;line-height:1.2;color:${c||'#fff'};font-variant-numeric:tabular-nums">${v}</div></div>`;
- const strip=s=>`<div style="display:inline-flex;background:#0b0b0cf2;border:1px solid #ffffff33;border-radius:14px;overflow:hidden;font-family:system-ui,sans-serif;color:#fff">${cell('Premier',fmt(s.rating),tier(s.rating))}${cell('W - L',s.w+' - '+s.l)}<div style="padding:12px 22px;text-align:center"><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9a9aa0;font-weight:700">K/D</div><div style="font-size:28px;font-weight:800;line-height:1.2;font-variant-numeric:tabular-nums">${kd(s)}</div></div></div>`;
- el.innerHTML=page('CS2 Stats Bar','Premier rating, wins/losses and K/D. Update the numbers by hand while you play, then export an OBS overlay.',`<div class="two"><div class="panel">
- <label>Premier rating</label><input id="r" type="number" min="0" max="40000" value="${s.rating}">
- <div class="row" style="margin-top:0"><div style="flex:1"><label>Wins</label><input id="w" type="number" min="0" value="${s.w}"></div><div style="flex:1"><label>Losses</label><input id="l" type="number" min="0" value="${s.l}"></div></div>
- <div class="row" style="margin-top:0"><div style="flex:1"><label>Kills</label><input id="k" type="number" min="0" value="${s.k}"></div><div style="flex:1"><label>Deaths</label><input id="d" type="number" min="0" value="${s.d}"></div></div>
- <div class="row"><button id="aw" class="pri">+ Win</button><button id="al">+ Loss</button><button id="rs">Reset</button></div></div>
- <div><div class="panel checker" style="padding:30px" id="pv"></div><div class="row"><button class="pri" id="ex">Download OBS overlay</button><button id="cp">Copy overlay HTML</button></div>
- <div class="note">Numbers are entered by hand, since live CS2 stats need an API key and a server. The overlay file shows whatever values you exported, so export again after updating.</div>${OBSNOTE}</div></div>`);
- const up=()=>{const n=id=>Math.max(0,Math.floor(+$(id).value)||0);s={rating:n('#r'),w:n('#w'),l:n('#l'),k:n('#k'),d:n('#d')};LS.s('cs2.s',s);$('#pv').innerHTML=strip(s)};
- $$('input',el).forEach(i=>i.oninput=up);
- $('#aw').onclick=()=>{$('#w').value=(+$('#w').value||0)+1;up()};$('#al').onclick=()=>{$('#l').value=(+$('#l').value||0)+1;up()};
- $('#rs').onclick=()=>{LS.s('cs2.s',D);rerun(el)};
- const doc=()=>overlayDoc(`<div style="padding:10px">${strip(s)}</div>`);
- $('#ex').onclick=()=>dl('voqcl-cs2-overlay.html',doc(),'text/html');$('#cp').onclick=e=>copy(doc(),e.target);up()});
 /* ===== app.js ===== */
 const CATS={obs:'OBS Overlays',util:'Stream Utilities',creator:'Creator Tools',yt:'YouTube Tools',dev:'Code & Dev Tools',text:'Text Tools'};
 const card=t=>`<a class="card" href="#/tool/${t.id}"><div class="ic">${t.ic}</div><div><b>${t.name}</b><small>${t.desc}</small></div><span class="ar">→</span></a>`;
