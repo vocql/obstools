@@ -1,0 +1,22 @@
+const CATS={obs:'OBS Overlays',util:'Stream Utilities',creator:'Creator Tools',yt:'YouTube Tools',dev:'Code & Dev Tools',text:'Text Tools'};
+const card=t=>`<a class="card" href="#/tool/${t.id}"><div class="ic">${t.ic}</div><div><b>${t.name}</b><small>${t.desc}</small></div><span class="ar">→</span></a>`;
+const recents=()=>LS.g('recent',[]).map(id=>T.find(t=>t.id===id)).filter(Boolean);
+function render(){runClean();document.body.classList.remove('bare','ov');const app=$('#app'),h=(location.hash||'#/').slice(1),[,r,a,b]=h.split('/');window.scrollTo(0,0);document.title='VOQCL TOOLS';
+ $$('#nav a').forEach(x=>x.classList.toggle('on',x.getAttribute('href')==='#'+h||(h==='/tools'&&x.getAttribute('href')==='#/tools')));
+ if(r==='live'&&/^\w{3,25}$/.test(a||'')){document.body.classList.add('bare');if(b==='overlay')document.body.classList.add('ov');document.title=a+' · followers';app.innerHTML='<div id="lvb" style="min-height:100vh;display:grid;place-items:center;padding:20px"></div>';liveView($('#lvb'),a.toLowerCase(),b==='overlay');return}
+ if(r==='tool'){const t=T.find(x=>x.id===a);if(!t){app.innerHTML=page('Tool not found','That tool does not exist.','<a class="btn pri" href="#/tools">Browse tools</a>');return}
+  LS.s('recent',[t.id,...LS.g('recent',[]).filter(x=>x!==t.id)].slice(0,6));app.innerHTML='<div id="tp"><p class="d">Loading…</p></div>';$('#tp').dataset.tool=t.id;document.title=t.name+' · VOQCL TOOLS';
+  try{t.fn($('#tp'));app.insertAdjacentHTML('afterbegin',`<p><a href="#/tools" style="color:var(--mu)">← All tools</a></p>`)}catch(e){console.error(e);app.innerHTML=page('Something went wrong','This tool failed to load.',`<p class="err">${esc(e.message)}</p><a class="btn" href="#/tools">Back</a>`)}return}
+ if(r==='c'&&CATS[a]){app.innerHTML=page(CATS[a],'Tools in this category.',`<div class="grid">${T.filter(t=>t.cat===a).map(card).join('')}</div>`);return}
+ if(r==='tools'){let q='',c='';const draw=()=>{const L=T.filter(t=>(!c||t.cat===c)&&(t.name+t.desc).toLowerCase().includes(q.toLowerCase()));$('#gl').innerHTML=L.length?L.map(card).join(''):'<p class="d">No tools match your search.</p>'};
+  app.innerHTML=page('Tools','Everything runs in your browser — no uploads, no accounts.',`<input id="q" placeholder="Search tools…  (press /)" autocomplete="off" style="max-width:420px"><div class="row" id="ch"><span class="chip on" data-c="">All</span>${Object.entries(CATS).map(([k,v])=>`<span class="chip" data-c="${k}">${v}</span>`).join('')}</div><h2 style="margin-top:20px">Results</h2><div class="grid" id="gl"></div>`);
+  $('#q').oninput=e=>{q=e.target.value;draw()};$('#ch').onclick=e=>{const s=e.target.closest('.chip');if(!s)return;c=s.dataset.c;$$('.chip').forEach(x=>x.classList.toggle('on',x===s));draw()};draw();return}
+ const big=id=>{const t=T.find(x=>x.id===id);return `<a class="fc" href="#/tool/${t.id}"><div class="ic">${t.ic}</div><b>${t.name}</b><small>${t.desc}</small><span class="btn pri">Open tool →</span></a>`};
+ const rc=recents();app.innerHTML=`<section class="hero"><div class="kick">VOQCL TOOLS</div><h1>Tools built for<br>streamers.</h1><p class="d">Overlays, chat, follower tracking, multiview and creator utilities. Black, white, fast.</p><div class="row"><a class="btn pri" href="#/tools">Browse ${T.length} tools</a><a class="btn" href="#/tool/chatis">Get chat overlay</a></div></section>
+ <h2>Featured</h2><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">${['multiview','chatis','followlive'].map(big).join('')}</div>
+ ${rc.length?`<h2>Recently used</h2><div class="grid">${rc.map(card).join('')}</div>`:''}
+ ${Object.entries(CATS).map(([k,v])=>`<h2>${v}</h2><div class="grid">${T.filter(t=>t.cat===k).map(card).join('')}</div>`).join('')}`}
+addEventListener('hashchange',render);render();
+addEventListener('keydown',e=>{const t=e.target,typing=!!(t.matches&&t.matches('input,textarea,select,[contenteditable]'));
+ if((e.key.toLowerCase()==='k'&&(e.ctrlKey||e.metaKey))||(e.key==='/'&&!typing&&!e.ctrlKey&&!e.metaKey&&!e.altKey)){e.preventDefault();if($('#q'))$('#q').focus();else{location.hash='#/tools';setTimeout(()=>$('#q')&&$('#q').focus(),60)}}
+ else if(e.key==='Escape'&&typing)t.blur()});
