@@ -34,12 +34,10 @@ window.CONFIG = {
     thumbnail: ''                           // image URL, or '' for the animated placeholder
   },
 
-  schedule: [
-    { day: 'Mon', start: '12:00', end: '16:00', title: 'Live on YouTube' },
-    { day: 'Tue', start: '12:00', end: '16:00', title: 'Live on YouTube' },
-    { day: 'Wed', start: '12:00', end: '16:00', title: 'Live on YouTube' },
-    { day: 'Thu', start: '12:00', end: '16:00', title: 'Live on YouTube' },
-    { day: 'Fri', start: '12:00', end: '16:00', title: 'Live on YouTube' }
+    schedule: [
+    { day: 'Mon', start: '14:00', end: '16:00', title: 'Live on YouTube' },
+    { day: 'Wed', start: '14:00', end: '16:00', title: 'Live on YouTube' },
+    { day: 'Fri', start: '14:00', end: '16:00', title: 'Live on YouTube' }
   ],
 
   // Change the ID for each new announcement so it appears again; set to null to disable it.
