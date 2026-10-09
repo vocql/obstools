@@ -22,7 +22,7 @@ window.CONFIG = {
   // Live viewer count from YouTube. Paste a YouTube Data API v3 key here.
   // Restrict the key to your site (see steps in the chat) so nobody else can use it.
   // Leave '' to hide the viewer count.
-  youtubeApiKey: '',
+  youtubeApiKey: 'AIzaSyDf0drdVyYSq96hKyUmiENxxO4DuQ6l6E4',
 
   // used when forced live, or as fallbacks (detection fills in the real title/link/thumbnail)
   live: {
