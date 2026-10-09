@@ -41,19 +41,26 @@ window.CONFIG = {
     { day: 'Fri', start: '12:00', end: '16:00', title: 'Live on YouTube' }
   ],
 
-  // change the id for each new announcement so it shows again; set to null to turn it off
-  announcement: {
-    id: 'new-series-oct',
-    title: 'New series starts Monday',
-    short: 'Same time, new format. Here\'s what\'s changing next week.',
-    date: 'Posted Oct 9',
-    details: [
-      'Starting Monday I\'m trying something new on stream. Streams stay at the usual time, the first hour just looks a bit different.',
-      'Turn on notifications so you catch the first episode.'
-    ],
-    list: ['Monday: episode one', 'Wednesday: viewer picks', 'Friday: recap and Q&A'],
-    link: { label: 'Turn on notifications', url: 'https://www.youtube.com/@voqcl' }
-  },
+  // Change the ID for each new announcement so it appears again; set to null to disable it.
+announcement: {
+  id: 'voqcl-stream-return-oct-28',
+  title: 'We’re Live October 28',
+  short: 'The wait is almost over. VOQCL returns to streaming on October 28.',
+  date: 'Posted Oct 9',
+  details: [
+    'The countdown is on. I’m officially planning to return to streaming on October 28, 2026. It’s been a while, and I’m looking forward to getting back live and creating content again.',
+    'Make sure you’re subscribed and have notifications turned on so you don’t miss the first stream back.'
+  ],
+  list: [
+    'October 28: Stream return',
+    'Live on YouTube',
+    'More streams and content coming soon'
+  ],
+  link: {
+    label: 'Subscribe on YouTube',
+    url: 'https://www.youtube.com/@voqcl'
+  }
+},
 
   youtube: 'https://www.youtube.com/@voqcl',
   // add thumb: 'image-url' to use a real thumbnail
@@ -67,5 +74,5 @@ window.CONFIG = {
   ],
 
   contactEmail: 'voqcl@usa.com',   // shows the contact form on the Contact page
-  showPreviewSwitch: true          // set to false before uploading
+  showPreviewSwitch: false          // set to false before uploading
 };
