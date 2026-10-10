@@ -64,7 +64,7 @@ window.CONFIG = {
         { type: 'instagram', url: 'https://www.instagram.com/voqcl' },
         { type: 'x',         url: 'https://x.com/vocqll' },
         { type: 'twitch',    url: 'https://www.twitch.tv/voqcl' },
-        { type: 'tiktok',    url: 'https://www.tiktok.com/@eswv' }
+        { type: 'tiktok',    url: 'https://www.tiktok.com/@voqcl' }
       ]
     },
     {
