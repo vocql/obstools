@@ -43,18 +43,15 @@ window.CONFIG = {
   youtube: 'https://www.youtube.com/@voqcl',   // your channel; the @handle here is the one checked for live streams
 
   // ===== CREATORS =====
-  // Everyone visitors can switch between with the picker in the navbar. The FIRST one is you
-  // (the default, and the only one that uses your schedule/live settings above).
-  //   youtube:    their channel link. The @handle is what gets checked for live streams.
-  //   pfp:        profile picture. Three options:
-  //                 ''                              -> pulled from their YouTube channel automatically
-  //                 '/creators/shogun-pfp.png'      -> an image you uploaded to your repo (in a "creators" folder)
-  //                 'https://…/picture.png'         -> any image link
-  //   background: page background. Same three options ('' = their YouTube channel banner).
-  //   socials:    the buttons on the home card. type can be youtube, twitch, tiktok, instagram,
-  //               x, email, or anything else with a label (shows a link icon).
-  //   schedule:   optional, same format as yours above. Leave out start/end for "time varies". [] = no schedule.
-  //   timezone:   optional, for their schedule (defaults to yours).
+  // Everyone visitors can switch between with the picker in the navbar. The FIRST one is you.
+  // Picking a creator switches the navbar logo + name, home card, About, Contact, Schedule and Live.
+  //   youtube:    their channel link (that's all you need; everything else is optional)
+  //   pfp:        '' = from YouTube, '/creators/file.png' = uploaded to your repo, or any image link
+  //   background: same options ('' = their YouTube banner)
+  //   socials:    buttons on the home card + Contact page (youtube, twitch, tiktok, instagram, x, discord, email)
+  //   schedule:   same format as yours above; leave out start/end for "time varies"
+  //   about:      optional short bio for their About page
+  //   email:      optional; shows an email button + form on their Contact page
   creators: [
     {
       id: 'voqcl',
@@ -94,13 +91,19 @@ window.CONFIG = {
       youtube: 'https://www.youtube.com/@WillMacGTA',
       pfp: '/creators/willmac-pfp.png',
       background: '/creators/willmac-bg.png',
+      email: 'willmacgta@gmail.com',
       socials: [
-        { type: 'youtube', url: 'https://www.youtube.com/@WillMacGTA' }
+        { type: 'youtube',   url: 'https://www.youtube.com/@WillMacGTA' },
+        { type: 'twitch',    url: 'https://www.twitch.tv/willmacgta' },
+        { type: 'x',         url: 'https://twitter.com/willmacgta' },
+        { type: 'tiktok',    url: 'https://www.tiktok.com/@willmacgta' },
+        { type: 'instagram', url: 'https://www.instagram.com/willmacgta' },
+        { type: 'discord',   url: 'https://discord.gg/WUbvVafvT4' }
       ],
       schedule: []
     }
   ],
 
-  contactEmail: 'voqcl@usa.com',   // shows the contact form on the Contact page
+  contactEmail: 'voqcl@usa.com',   // shows the contact form on your Contact page
   showPreviewSwitch: false         // keep false on the real site
 };
