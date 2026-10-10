@@ -74,7 +74,7 @@ window.CONFIG = {
       id: 'theurbanshogun',
       name: 'TheUrbanShogun',
       youtube: 'https://www.youtube.com/@TheUrbanShogun',
-      pfp: '',
+      pfp: '/creators/shogun-pfp.png',
       background: '',
       socials: [
         { type: 'youtube', url: 'https://www.youtube.com/@TheUrbanShogun' }
@@ -92,8 +92,8 @@ window.CONFIG = {
       id: 'willmacgta',
       name: 'WillMacGTA',
       youtube: 'https://www.youtube.com/@WillMacGTA',
-      pfp: '',
-      background: '',
+      pfp: '/creators/willmac-pfp.png',
+      background: '/creators/willmac-bg.png',
       socials: [
         { type: 'youtube', url: 'https://www.youtube.com/@WillMacGTA' }
       ],
